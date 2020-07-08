@@ -1,0 +1,165 @@
+package local.BOTinc.BookStore2;
+
+import static local.BOTinc.BookStore2.ListBook.*;
+
+import java.util.Scanner;
+
+public class BookStore {
+
+	public static void main(String[] args) {
+
+		Scanner masukan = new Scanner(System.in);
+		
+		int pilihan = 0; // PILIHAN MENU
+		int countJav = 0, countKot = 0, countSpr = 0, countAng = 0; // penghitungan untuk jumlah setiap buku
+		int pilihanBuku = 0; // PILIHAN BUKU
+		int totHargaJav = 0, totHargaKot = 0, totHargaSpr = 0, totHargaAng = 0; // harga total setiap buku
+		int totHargaBuku = 0; // total harga semua buku
+		int beliLagi = 0; //indikator untuk memilih lagi pada menu list buku (1)
+		int hapuslagi = 0; //indikator untuk menghapus lagi pada menu daftar belanja (2)
+		int pilihanHapusBuku = 0; //pilihan buku yang akan dihapus
+
+		do {
+
+			System.out.println("1.Tampilkan List Buku");
+			System.out.println("2.Daftar Belanja");
+			System.out.println("3.Keluar");
+
+			pilihan = masukan.nextInt();
+
+			if (pilihan == 1) {
+				do {
+					tampilkan();
+
+					System.out.println("Pilih Buku yang akan di Beli ?");
+
+					pilihanBuku = masukan.nextInt();
+
+					if (pilihanBuku == JAV.nomor) {
+						countJav++;
+						System.out.println(
+								"Anda membeli " + countJav + " buah buku " + JAV.buku + " dengan harga " + JAV.harga);
+
+					} else if (pilihanBuku == KOT.nomor) {
+						countKot++;
+						System.out.println(
+								"Anda membeli " + countKot + " buah buku " + KOT.buku + " dengan harga " + KOT.harga);
+
+					} else if (pilihanBuku == SPR.nomor) {
+						countSpr++;
+						System.out.println(
+								"Anda membeli " + countSpr + " buah buku " + SPR.buku + " dengan harga " + SPR.harga);
+
+					} else if (pilihanBuku == ANG.nomor) {
+						countAng++;
+						System.out.println(
+								"Anda membeli " + countAng + " buah buku " + ANG.buku + " dengan harga " + ANG.harga);
+
+					} else {
+						System.out.println("Pilihan tidak ada");
+					}
+
+					System.out.println("Apakah mau beli lagi ?");
+					System.out.println("Pilih 1 untuk pilih kembali");
+					System.out.println("Pilih 2 untuk keluar");
+
+					beliLagi = masukan.nextInt();
+					if (beliLagi == 2) {
+						break;
+					}
+
+				} while (true);
+			} else if (pilihan == 2) {
+				
+				System.out.println("Keranjang Belanja");
+
+				totHargaJav = countJav * 10000;
+				totHargaKot = countKot * 11000;
+				totHargaSpr = countSpr * 12000;
+				totHargaAng = countAng * 13000;
+				
+				totHargaBuku = totHargaJav + totHargaKot + totHargaSpr + totHargaAng;
+
+				tampilkanJumlahBukuDanTotalHarga(countJav, totHargaJav ,countKot,totHargaKot,countSpr, totHargaSpr, countAng, totHargaAng);
+				
+				System.out.println("Total pembelian buku : " + totHargaBuku);
+				
+				do {
+				
+					System.out.println("Apakah anda ingin menghapus belanjaan anda ?");
+					System.out.println("Pilih 1 untuk ya");
+					System.out.println("Pilih 2 untuk tidak");
+
+					hapuslagi = masukan.nextInt();
+					
+					if ( hapuslagi == 2) {
+						break;
+					}
+					
+					tampilkan();
+					
+					System.out.println("Pilih Buku yang ingin dihapus ");
+					
+					pilihanHapusBuku = masukan.nextInt();
+					
+					if(pilihanHapusBuku == 1) {
+						countJav--;
+					}
+					else if(pilihanHapusBuku == 2) {
+						countKot--;
+					}
+					else if(pilihanHapusBuku == 3) {
+						countSpr--;
+					}
+					else if(pilihanHapusBuku == 4) {
+						countAng--;
+					}
+					
+					
+				}while(true);
+		
+				totHargaJav = countJav * 10000;
+				totHargaKot = countKot * 11000;
+				totHargaSpr = countSpr * 12000;
+				totHargaAng = countAng * 13000;
+				
+				tampilkanJumlahBukuDanTotalHarga(countJav, totHargaJav ,countKot,totHargaKot,countSpr, totHargaSpr, countAng, totHargaAng);
+				totHargaBuku = totHargaJav + totHargaKot + totHargaSpr + totHargaAng;
+				System.out.println("Total pembelian buku : " + totHargaBuku);
+
+				
+				
+				System.exit(0);
+
+			} else if (pilihan == 3) {
+				masukan.close();
+				System.exit(0);
+			} else {
+				System.out.println("Pilihan tidak ada");
+			}
+
+		} while (true);
+
+	}
+
+	public static void tampilkan() {
+		System.out.println(JAV.nomor + ". " + JAV.buku + " dengan harga " + JAV.harga);
+		System.out.println(KOT.nomor + ". " + KOT.buku + " dengan harga " + KOT.harga);
+		System.out.println(SPR.nomor + ". " + SPR.buku + " dengan harga " + SPR.harga);
+		System.out.println(ANG.nomor + ". " + ANG.buku + " dengan harga " + ANG.harga);
+	}
+	
+	public static void tampilkanJumlahBukuDanTotalHarga(int countJav, int totHargaJav ,int countKot,int totHargaKot,int countSpr, int totHargaSpr, int countAng, int totHargaAng) {
+		
+		System.out.println(
+				JAV.nomor + ". " + JAV.buku + " ( " +countJav + " )" + " dengan harga " + JAV.harga + " total Harga " + totHargaJav);
+		System.out.println(
+				KOT.nomor + ". " + KOT.buku + " ( " +countKot + " )" + " dengan harga " + KOT.harga + " total Harga " + totHargaKot);
+		System.out.println(
+				SPR.nomor + ". " + SPR.buku + " ( " +countSpr + " )" + " dengan harga " + SPR.harga + " total Harga " + totHargaSpr);
+		System.out.println(
+				ANG.nomor + ". " + ANG.buku + " ( " +countAng + " )" + " dengan harga " + ANG.harga + " total Harga " + totHargaAng);
+
+	}
+
+}
