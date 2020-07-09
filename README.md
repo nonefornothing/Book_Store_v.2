@@ -7,8 +7,13 @@ Book Store App using HashMap
 * [Setup](#setup)
 
 ## General info
-This project is Book Store App with information that use from enum , with input and output from console.
-Feature :
+This project has 2 method to solve same problem.
+1. BookStore.java ==> regular program
+2. BookStoreUsingHashMap ==> using colection to save data 
+
+all method using information that from enum and input and output from console.
+
+Design program  :
 1. Add/Update book that user choose.
 2. calculate total books and total price of books.
 3. implement try and catch method to accept only proper input.
@@ -20,5 +25,7 @@ Project is created with:
 * Java 8
 	
 ## Setup
-To run this project, download all files in folder and run program at Main.java 
+To run this project, download all files in folder and run program 
+1. BookStore.java ==> regular program
+2. BookStoreUsingHashMap ==> using colection to save data 
 
